@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>PEC - Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+   
+    <style>
+
+        body.login-body {
+            background-color: #15803d;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .login-card {
+            background-color: #f4fbf4;
+            border-radius: 40px;
+            padding: 50px 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .login-card h1 {
+            color: #14532d;
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 40px;
+        }
+
+        .input-group-container {
+            background-color: white;
+            border-radius: 24px;
+            padding: 30px 24px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+            box-sizing: border-box;
+        }
+
+        .input-group-container input {
+            width: 100%;
+            padding: 16px;
+            margin-bottom: 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 14px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-group-container input:focus {
+            border-color: #22c55e;
+        }
+
+        .input-group-container button {
+            background-color: #16a34a;
+            color: white;
+            border: none;
+            border-radius: 14px;
+            padding: 16px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s ease;
+            box-shadow: 0 4px 12px rgba(22, 163, 74, 0.2);
+        }
+
+        .input-group-container button:hover {
+            background-color: #15803d;
+        }
+
+        .enlace-login {
+            color: #16a34a;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        .enlace-login:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+
+<body class="login-body">
+
+<div class="login-card">
+
+    <h1>Login PEC</h1>
+
+    <form action="/validar_login" method="POST" autocomplete="off">
+
+        <div class="input-group-container">
+           
+            <input type="text"
+                   name="u_correo"
+                   placeholder="Correo"
+                   autocomplete="off"
+                   required>
+           
+            <input type="password"
+                   name="contrasena"
+                   placeholder="Contraseña"
+                   autocomplete="new-password"
+                   required>
+                   
+            <button type="submit">Entrar</button>
+
+            <p style="margin-top: 18px; font-size: 0.95rem; color: #4b5563;">
+                ¿No tienes cuenta?
+            </p>
+
+            <a href="/registro" class="enlace-login">
+                Regístrate aquí
+            </a>
+           
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+</html>

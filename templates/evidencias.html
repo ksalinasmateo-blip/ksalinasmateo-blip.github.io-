@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>PEC - Evidencias</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header-principal">
+        <h1>CECYTEM - PEC</h1>
+        <nav>
+            <a href="/docentes">Inicio</a>
+            <a href="/responsables">Responsables</a>
+            <a href="/actividades">Actividades</a>
+            <a href="/evaluaciones">Evaluaciones</a>
+            <a href="/evidencias" style="color: #bbf7d0;">Evidencias</a>
+            <a href="/logout" style="color: #fca5a5;">Cerrar Sesión</a>
+        </nav>
+    </header>
+
+    <h1 class="titulo-pagina">Evidencias del Proyecto</h1>
+
+    <main class="main-index">
+        
+        {% if session['rol'] == 'responsable' %}
+        <section>
+            <h2>Subir Evidencia</h2>
+            <form action="/guardar_evidencia" method="POST" enctype="multipart/form-data" autocomplete="off">
+
+                <label>Selecciona la Actividad Relacionada:</label>
+                <select name="id_actividad" required>
+                    <option value="" disabled selected style="color: #6b7280;">-- Selecciona una Actividad --</option>
+                    {% for act in actividades %}
+                        <option value="{{ act['id_actividad'] }}">{{ act['nombre'] }}</option>
+                    {% endfor %}
+                </select>
+
+                <label>Archivo de Evidencia (Imagen/Documento):</label>
+                <input type="file" name="archivo" required>
+
+                <label>Descripción o Notas de la Evidencia:</label>
+                <textarea name="descripcion" placeholder="Escribe una breve descripción aquí..." required style="width: 100%; padding: 12px; border: 1px solid #e5e7eb; border-radius: 12px; font-family: inherit; margin-bottom: 15px; resize: vertical;"></textarea>
+
+                <button type="submit">Subir Evidencia</button>
+            </form>
+        </section>
+        {% else %}
+        <section style="text-align: center;">
+            <h2>Visualización de Evidencias</h2>
+            <p style="color: #6b7280; margin-bottom: 20px;">Solo puedes visualizar las evidencias registradas en el sistema.</p>
+        </section>
+        {% endif %}
+
+        <section>
+            <h2>Evidencias Registradas</h2>
+            {% if evidencias %}
+                <div style="display: flex; flex-direction: column; gap: 15px; width: 100%;">
+                    {% for e in evidencias %}
+                        <div class="actividad-card">
+                            <h3>Evidencia #{{ e['id_evidencia'] }}</h3>
+                            <p><strong>Descripción:</strong> {{ e['descripcion'] }}</p>
+                            
+                            <p><strong>ID Actividad Vinculada:</strong> 
+                                <span style="background: #e0f2fe; color: #0369a1; padding: 2px 8px; border-radius: 6px; font-weight: 600;">
+                                    #{{ e['id_actividad'] }}
+                                </span>
+                            </p>
+
+                            {% if e['archivo'] %}
+                                <p style="margin-top: 10px;">
+                                    📁 <a href="/uploads/{{ e['archivo'] }}" target="_blank" style="color: #10b981; font-weight: 600; text-decoration: none;">Ver archivo adjunto</a>
+                                </p>
+                            {% endif %}
+
+                            {% if session['rol'] == 'responsable' %}
+                            <div style="margin-top: 15px; display: flex; gap: 10px; border-top: 1px solid #e5e7eb; padding-top: 12px;">
+                                <a href="/editar_evidencia/{{ e['id_evidencia'] }}" style="background-color: #f59e0b; color: white; padding: 6px 14px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 600; display: inline-block;">
+                                    ✏️ Editar
+                                </a>
+                                <a href="/eliminar_evidencia/{{ e['id_evidencia'] }}" onclick="return confirm('¿Seguro que deseas eliminar esta evidencia del sistema PEC?')" style="background-color: #ef4444; color: white; padding: 6px 14px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 600; display: inline-block;">
+                                    🗑️ Eliminar
+                                </a>
+                            </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p style="text-align: center; color: #6b7280; padding: 20px 0;">No hay evidencias registradas en este momento.</p>
+            {% endif %}
+        </section>
+
+    </main>
+
+    <footer>
+        &copy; 2026 PEC | Sistema Escolar CECYTEM
+    </footer>
+
+</body>
+</html>

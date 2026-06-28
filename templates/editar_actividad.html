@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Editar Actividad</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<h1>Editar Actividad</h1>
+
+<form action="/actualizar_actividad" method="POST">
+
+    <input type="hidden"
+           name="id_actividad"
+           value="{{ a.id_actividad }}">
+
+    <input type="text"
+           name="nombre"
+           value="{{ a.nombre }}"
+           required>
+
+    <textarea name="descripcion"
+              required>{{ a.descripcion }}</textarea>
+
+    <input type="date"
+           name="fecha"
+           value="{{ a.fecha }}"
+           required>
+
+    <input type="text"
+           name="lugar"
+           value="{{ a.lugar }}"
+           required>
+
+    <input type="text"
+           name="responsable"
+           value="{{ a.responsable }}"
+           required>
+
+    <input type="text"
+           name="sede"
+           value="{{ a.sede }}"
+           required>
+
+    <button type="submit">
+        Actualizar Actividad
+    </button>
+
+</form>
+
+<div style="text-align:center; margin-top:20px;">
+
+    <a href="/actividades" class="boton-principal">
+        Cancelar
+    </a>
+
+</div>
+
+</body>
+</html>

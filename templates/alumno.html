@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>PEC - Panel Alumno</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header-principal">
+        <h1>CECYTEM - PEC</h1>
+        <nav>
+            <a href="/alumno" style="color: #bbf7d0;">Inicio</a>
+            <a href="/actividades">Actividades</a>
+            <a href="/evaluaciones">Evaluaciones</a>
+            <a href="/evidencias">Evidencias</a>
+            <a href="/logout" style="color: #fca5a5;">Cerrar Sesión</a>
+        </nav>
+    </header>
+
+    <h1 class="titulo-pagina">Bienvenido al Panel de Alumno</h1>
+
+    <main class="main-index">
+        <section style="text-align: center; padding: 40px 20px;">
+            <h2>Hola, {{ session['usuario'] }} 👋</h2>
+            <p style="color: #6b7280; margin-top: 10px; font-size: 16px;">
+                Desde este panel puedes consultar de manera segura las actividades escolares, revisar tus evaluaciones asignadas y visualizar las evidencias cargadas en el sistema PEC.
+            </p>
+            
+            <div style="display: flex; justify-content: center; gap: 20px; margin-top: 30px; flex-wrap: wrap;">
+                <div class="actividad-card" style="width: 250px; text-align: center;">
+                    <h3>📅 Actividades</h3>
+                    <p style="font-size: 13px; margin-bottom: 15px;">Consulta las fechas, sedes y archivos de las actividades.</p>
+                    <a href="/actividades" class="boton-principal" style="text-decoration: none; display: block;">Ver Tablero</a>
+                </div>
+
+                <div class="actividad-card" style="width: 250px; text-align: center;">
+                    <h3>📊 Evaluaciones</h3>
+                    <p style="font-size: 13px; margin-bottom: 15px;">Observa tus calificaciones y comentarios de los docentes.</p>
+                    <a href="/evaluaciones" class="boton-principal" style="text-decoration: none; display: block;">Ver Notas</a>
+                </div>
+
+                <div class="actividad-card" style="width: 250px; text-align: center;">
+                    <h3>📂 Evidencias</h3>
+                    <p style="font-size: 13px; margin-bottom: 15px;">Revisa los documentos y archivos de soporte guardados.</p>
+                    <a href="/evidencias" class="boton-principal" style="text-decoration: none; display: block;">Ver Archivos</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2026 PEC | Sistema Escolar CECYTEM
+    </footer>
+
+</body>
+</html>

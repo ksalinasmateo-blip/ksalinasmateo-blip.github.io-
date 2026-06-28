@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Registro de Usuario - PEC</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        body.login-body {
+            background-color: #15803d;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .login-card {
+            background-color: #f4fbf4;
+            border-radius: 40px;
+            padding: 50px 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            width: min(420px, 90%);
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .login-card h1 {
+            color: #14532d;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 30px;
+        }
+
+        .input-group-container {
+            background-color: white;
+            border-radius: 24px;
+            padding: 30px 24px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+            box-sizing: border-box;
+        }
+
+        .input-group-container input,
+        .input-group-container select {
+
+            width: 100%;
+            padding: 16px;
+            margin-bottom: 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 14px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-group-container input:focus,
+        .input-group-container select:focus {
+
+            border-color: #22c55e;
+        }
+
+        .input-group-container button {
+
+            background-color: #16a34a;
+            color: white;
+            border: none;
+            border-radius: 14px;
+            padding: 16px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(22, 163, 74, 0.2);
+            margin-bottom: 15px;
+        }
+
+        .input-group-container button:hover {
+            background-color: #15803d;
+        }
+
+        .enlace-login {
+            color: #16a34a;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .enlace-login:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+
+</head>
+
+<body class="login-body">
+
+<div class="login-card">
+
+    <h1>Crear Cuenta</h1>
+
+    <form action="/guardar_usuario" method="POST" autocomplete="off">
+
+        <div class="input-group-container">
+
+            <input type="text"
+                   name="nombre"
+                   placeholder="Nombre Completo"
+                   minlength="3"
+                   maxlength="150"
+                   required>
+
+            <input type="email"
+                   name="correo"
+                   placeholder="Correo Electrónico"
+                   maxlength="150"
+                   required>
+
+            <input type="password"
+                   name="contrasena"
+                   placeholder="Contraseña"
+                   maxlength="100"
+                   autocomplete="new-password"
+                   required>
+
+            <select name="rol" required>
+
+                <option value="" disabled selected hidden>
+                    Selecciona tu Rol
+                </option>
+
+                <option value="alumno">
+                    Alumno
+                </option>
+
+                <option value="responsable">
+                    Docente / Responsable
+                </option>
+
+            </select>
+
+            <input type="text"
+                   name="codigo_docente"
+                   placeholder="Código Docente (Solo profesores)"
+                   maxlength="100">
+
+            <button type="submit">
+                Registrarse
+            </button>
+
+            <a href="/login" class="enlace-login">
+                ¿Ya tienes cuenta? Inicia sesión
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+</html>

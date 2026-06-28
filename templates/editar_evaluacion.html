@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Evaluación</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <h1>Editar Evaluación</h1>
+
+    <form action="/actualizar_evaluacion" method="POST">
+
+        <input type="hidden" name="id_evaluacion" value="{{ e.id_evaluacion }}">
+
+        <label style="font-weight: 600; color: #166534;">ID de la Actividad:</label>
+        <input type="number" 
+               name="id_actividad" 
+               value="{{ e.id_actividad }}" 
+               required>
+
+        <label style="font-weight: 600; color: #166534;">Resultado / Calificación:</label>
+        <input type="text" 
+               name="resultado" 
+               value="{{ e.resultado }}">
+
+        <label style="font-weight: 600; color: #166534;">Observaciones:</label>
+        <textarea name="observaciones">{{ e.observaciones }}</textarea>
+
+        <button type="submit">
+            Actualizar Cambios
+        </button>
+
+    </form>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="/evaluaciones" class="boton-principal">Cancelar</a>
+    </div>
+
+</body>
+</html>

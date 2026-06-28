@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>PEC - Evaluaciones</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header-principal">
+        <h1>CECYTEM - PEC</h1>
+        <nav>
+            <a href="/docentes">Inicio</a>
+            <a href="/responsables">Responsables</a>
+            <a href="/actividades">Actividades</a>
+            <a href="/evaluaciones" style="color: #bbf7d0;">Evaluaciones</a>
+            <a href="/evidencias">Evidencias</a>
+            <a href="/logout" style="color: #fca5a5;">Cerrar Sesión</a>
+        </nav>
+    </header>
+
+    <h1 class="titulo-pagina">Evaluaciones del Sistema</h1>
+
+    <main class="main-index">
+
+        {% if session['rol'] == 'responsable' %}
+        <section>
+            <h2>Guardar Evaluación</h2>
+            <form action="/guardar_evaluacion" method="POST" autocomplete="off">
+
+                <label>Selecciona la Actividad a Evaluar:</label>
+                <select name="id_actividad" required>
+                    <option value="" disabled selected style="color: #6b7280;">-- Selecciona una Actividad --</option>
+                    {% for act in actividades %}
+                        <option value="{{ act['id_actividad'] }}">{{ act['nombre'] }}</option>
+                    {% endfor %}
+                </select>
+
+                <label>Resultado / Calificación:</label>
+                <input type="text" name="resultado" placeholder="Ej. Aprobado / 95%" required>
+
+                <label>Observaciones:</label>
+                <textarea name="observaciones" placeholder="Escribe las observaciones de la evaluación..." required style="width: 100%; padding: 12px; border: 1px solid #e5e7eb; border-radius: 12px; font-family: inherit; margin-bottom: 15px; resize: vertical;"></textarea>
+
+                <button type="submit">Guardar Evaluación</button>
+            </form>
+        </section>
+        {% else %}
+        <section style="text-align: center;">
+            <h2>Visualización de Evaluaciones</h2>
+            <p style="color: #6b7280; margin-bottom: 20px;">Solo puedes observar los resultados de las evaluaciones registradas.</p>
+        </section>
+        {% endif %}
+
+        <section>
+            <h2>Evaluaciones Registradas</h2>
+            {% if evaluaciones %}
+                <div style="display: flex; flex-direction: column; gap: 15px; width: 100%;">
+                    {% for e in evaluaciones %}
+                        <div class="actividad-card">
+                            <h3>Actividad ID: #{{ e.id_actividad }}</h3>
+                            <p><strong>Resultado / Calificación:</strong> <span style="color: #10b981; font-weight: 600;">{{ e.resultado }}</span></p>
+                            <p><strong>Observaciones:</strong> {{ e.observaciones }}</p>
+
+                            {% if session['rol'] == 'responsable' %}
+                                <div style="margin-top: 10px;">
+                                    <a href="/editar_evaluacion/{{ e.id_evaluacion }}" style="background-color: #10b981; color: white; padding: 6px 12px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 600; display: inline-block;">✏️ Editar</a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p style="text-align: center; color: #6b7280; padding: 20px 0;">No hay evaluaciones registradas en este momento.</p>
+            {% endif %}
+            
+            <br>
+            {% if session['rol'] == 'responsable' %}
+                <a href="/docentes" class="boton-principal" style="text-decoration: none; display: inline-block; text-align: center;">Volver al Panel</a>
+            {% else %}
+                <a href="/alumno" class="boton-principal" style="text-decoration: none; display: inline-block; text-align: center;">Volver al Panel</a>
+            {% endif %}
+        </section>
+
+    </main>
+
+    <footer>
+        &copy; 2026 PEC | Sistema Escolar CECYTEM
+    </footer>
+
+</body>
+</html>

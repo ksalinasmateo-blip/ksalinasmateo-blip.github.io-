@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>PEC - Editar Responsable</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header-principal">
+        <h1>CECYTEM - PEC</h1>
+        <nav>
+            <a href="/docentes">Inicio</a>
+            <a href="/responsables" style="color: #bbf7d0;">Responsables</a>
+            <a href="/actividades">Actividades</a>
+            <a href="/evaluaciones">Evaluaciones</a>
+            <a href="/evidencias">Evidencias</a>
+            <a href="/logout" style="color: #fca5a5;">Cerrar Sesión</a>
+        </nav>
+    </header>
+
+    <h1 class="titulo-pagina">Editar Responsable</h1>
+
+    <main class="main-index">
+        <section>
+            <h2>Modificar Datos del Profesor</h2>
+            <form action="/actualizar_responsable" method="POST" autocomplete="off">
+                <input type="hidden" name="id_responsable" value="{{ r['id_responsable'] }}">
+
+                <label>Nombre completo:</label>
+                <input type="text" name="nombre" value="{{ r['nombre'] }}" required>
+                
+                <label>Cargo o Función:</label>
+                <select name="cargo" required>
+                    <option value="{{ r['cargo'] }}" selected>Permanecer como: {{ r['cargo'] }}</option>
+                    
+                    <optgroup label="Personal Directivo y Administrativo">
+                        <option value="Director de Plantel">Director de Plantel</option>
+                        <option value="Subdirector Académico">Subdirector Académico</option>
+                        <option value="Coordinador de Vinculación">Coordinador de Vinculación</option>
+                        <option value="Jefe de Proyecto de Vinculación">Jefe de Proyecto de Vinculación</option>
+                        <option value="Jefe de Laboratorio">Jefe de Laboratorio</option>
+                    </optgroup>
+                    
+                    <optgroup label="Personal Docente (Profesores)">
+                        <option value="Docente de Asignatura">Docente de Asignatura</option>
+                        <option value="Profesor de Módulo">Profesor de Módulo</option>
+                        <option value="Asesor de Proyecto">Asesor de Proyecto</option>
+                        <option value="Tutor de Grupo">Tutor de Grupo</option>
+                    </optgroup>
+                </select>
+
+                <div style="display: flex; gap: 10px; margin-top: 15px;">
+                    <button type="submit" style="flex: 1;">Guardar Cambios</button>
+                    <a href="/responsables" style="background-color: #6b7280; color: white; text-decoration: none; padding: 14px 28px; border-radius: 12px; font-size: 16px; font-weight: 600; text-align: center; transition: 0.3s;" onmouseover="this.style.backgroundColor='#4b5563'" onmouseout="this.style.backgroundColor='#6b7280'">Cancelar</a>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2026 PEC | Sistema Escolar CECYTEM
+    </footer>
+
+</body>
+</html>

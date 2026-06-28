@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>PEC - Editar Evidencia</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header-principal">
+        <h1>CECYTEM - PEC</h1>
+        <nav>
+            <a href="/docentes">Inicio</a>
+            <a href="/responsables">Responsables</a>
+            <a href="/actividades">Actividades</a>
+            <a href="/evaluaciones">Evaluaciones</a>
+            <a href="/evidencias" style="color: #bbf7d0;">Evidencias</a>
+            <a href="/logout" style="color: #fca5a5;">Cerrar Sesión</a>
+        </nav>
+    </header>
+
+    <h1 class="titulo-pagina">Modificar Evidencia #{{ evidencia['id_evidencia'] }}</h1>
+
+    <main class="main-index">
+        <section>
+            <h2>Formulario de Edición</h2>
+            <form action="/actualizar_evidencia" method="POST" enctype="multipart/form-data" autocomplete="off">
+                
+                <input type="hidden" name="id_evidencia" value="{{ evidencia['id_evidencia'] }}">
+
+                <label>Selecciona la Actividad Relacionada:</label>
+                <select name="id_actividad" required>
+                    {% for act in actividades %}
+                        <option value="{{ act['id_actividad'] }}" {% if act['id_actividad'] == evidencia['id_actividad'] %} selected {% endif %}>
+                            {{ act['nombre'] }}
+                        </option>
+                    {% endfor %}
+                </select>
+
+                <label>Archivo de Evidencia (Opcional - Selecciona solo si deseas reemplazar el actual):</label>
+                <input type="file" name="archivo">
+                {% if evidencia['archivo'] %}
+                    <p style="font-size: 12px; color: #059669; margin-top: -10px; margin-bottom: 15px;">
+                        Archivo actual: {{ evidencia['archivo'] }}
+                    </p>
+                {% endif %}
+
+                <label>Descripción o Notas de la Evidencia:</label>
+                <textarea name="descripcion" required style="width: 100%; padding: 12px; border: 1px solid #e5e7eb; border-radius: 12px; font-family: inherit; margin-bottom: 15px; resize: vertical;">{{ evidencia['descripcion'] }}</textarea>
+
+                <div style="display: flex; gap: 10px; margin-top: 10px;">
+                    <button type="submit" style="background-color: #f59e0b;">Guardar Cambios</button>
+                    <a href="/evidencias" style="background-color: #6b7280; color: white; padding: 12px 20px; border-radius: 12px; text-decoration: none; font-size: 14px; font-weight: 600; text-align: center; flex: 1;">Cancelar</a>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2026 PEC | Sistema Escolar CECYTEM
+    </footer>
+
+</body>
+</html>

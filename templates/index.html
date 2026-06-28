@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>PEC - Inicio</title>
+
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+
+<style>
+
+
+/* ===== HEADER ===== */
+.header-principal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 70px 20px;
+    text-align: center;
+}
+
+
+/* ===== TITULO PEC ===== */
+.titulo-pec{
+    font-family: 'Playfair Display', serif;
+    font-size: 190px;
+    font-weight: bold;
+    color: #ffffff;
+    letter-spacing: 10px;
+    line-height: 1;
+
+
+    text-shadow:
+    0 0 10px rgba(255,255,255,0.5),
+    0 0 25px rgba(34,197,94,0.8),
+    0 0 45px rgba(21,128,61,0.9);
+
+
+    animation: brillo 3s infinite alternate;
+}
+
+
+/* ===== SUBTITULO ===== */
+.subtitulo{
+    margin-top: 20px;
+    font-size: 38px;
+    color: #dcfce7;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+
+/* ===== ANIMACION ===== */
+@keyframes brillo{
+    from{
+        transform: scale(1);
+    }
+
+
+    to{
+        transform: scale(1.03);
+    }
+}
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+<!-- ===== HEADER ===== -->
+<header class="header-principal">
+
+
+    <div>
+
+
+        <h1 class="titulo-pec">
+            PEC
+        </h1>
+
+
+        <p class="subtitulo">
+            Proyecto Escolar Comunitario
+        </p>
+
+
+    </div>
+
+
+</header>
+
+
+<!-- ===== CONTENIDO ===== -->
+<main class="main-index">
+
+
+    <section>
+        <h2>¿Qué es PEC?</h2>
+
+
+        <p>
+            PEC es un sistema digital diseñado para gestionar
+            actividades, evidencias y evaluaciones de forma organizada,
+            moderna y eficiente dentro del entorno educativo.
+        </p>
+    </section>
+
+
+    <section>
+        <h2>Funciones principales</h2>
+
+
+        <ul>
+            <li> Registrar actividades académicas</li>
+            <li> Subir evidencias y archivos</li>
+            <li> Evaluar resultados</li>
+            <li> Administrar responsables</li>
+            <li> Gestionar información escolar</li>
+        </ul>
+    </section>
+
+
+    <section style="text-align:center;">
+        <a href="/login" class="boton-principal">
+            Ingresar al Sistema
+        </a>
+    </section>
+
+
+</main>
+
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <p>PEC © 2026 | Sistema Escolar CECyTEM</p>
+</footer>
+
+
+</body>
+</html>
+
+
