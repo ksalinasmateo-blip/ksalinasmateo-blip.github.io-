@@ -1,3 +1,3 @@
 flask
-pyhton-dotenv
+python-dotenv
 gunicorn
